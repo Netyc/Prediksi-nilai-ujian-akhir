@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Nilai Mata Pelajaran</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediksi Nilai Mata Pelajaran</h1>
+        <form method="POST" action="process.php">
+            <div id="subjects-container">
+                <input type="text" name="subjects[]" placeholder="Masukkan mata pelajaran" required>
+            </div>
+            <button type="button" onclick="addSubjectField()">Tambah Mata Pelajaran</button>
+            <button type="submit">Prediksi Nilai</button>
+        </form>
+
+        <?php if (!empty($_GET['scores'])): ?>
+            <div class="results">
+                <h2>Hasil Prediksi:</h2>
+                <ul>
+                    <?php 
+                    $scores = json_decode($_GET['scores'], true);
+                    foreach ($scores as $subject => $score): ?>
+                        <li><strong><?= htmlspecialchars($subject) ?>:</strong> <?= $score ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <script>
+        function addSubjectField() {
+            const container = document.getElementById('subjects-container');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'subjects[]';
+            input.placeholder = 'Masukkan mata pelajaran';
+            input.required = true;
+            container.appendChild(input);
+        }
+    </script>
+</body>
+  </html>
+  
