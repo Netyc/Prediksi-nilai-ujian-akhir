@@ -79,7 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .container {
             max-width: 600px;
             margin: auto;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, .1,);
+            backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -99,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         h6 {
             font-size: 12px;
             color: #555;
-            text-align: center;
+            text-align: left;
         }
 
         form {
