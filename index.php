@@ -71,55 +71,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #eef2f7;
+            background-color: #F5F2FC;
             margin: 0;
             padding: 0;
         }
         .container {
             max-width: 800px;
             margin: 20px auto;
-            background: white;
+            background: rgba(255, 255, 255, .1,);
+            backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        h2 {
+           color: #212240;
+        }
+        h4 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
         }
+        h6 {
+            font-size: 10px;
+            color: #555;
+            text-align: ;
+            
+        }
         form {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 10px;
         }
         #subjects-container {
-            flex: 1 1 100%;
+            flex: 1 1 100%
         }
         input[type="text"] {
-            width: calc(100% - 20px);
+            
             padding: 10px;
-            font-size: 14px;
+            font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
         .buttons {
             display: flex;
             justify-content: space-between;
         }
         button {
-            padding: 10px 15px;
+            padding: 5px 10px;
             font-size: 14px;
             color: white;
-            background-color: #007BFF;
+            background-color: #212240;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #F5F2FC;
         }
         .results {
             margin-top: 20px;
@@ -175,20 +185,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <h1>Laporan Prediksi Nilai</h1>
+        <h2>Prediksi Nilai Ujian Akhir</2>
         <form method="POST">
             <div id="subjects-container">
+                <h6>Hasil prediksi adalah nilai asli dari soal yang kamu jawab saat ujian, tidak ada penambahan nilai dari tugas harian ataupun PR(tugas rumah)</h6>
                 <input type="text" name="subjects[]" placeholder="Masukkan mata pelajaran" required>
             </div>
             <div class="buttons">
-                <button type="button" onclick="addSubjectField()">Tambah Mata Pelajaran</button>
-                <button type="submit">Prediksi Nilai</button>
+                <button type="button" onclick="addSubjectField()">+</button>
+             <h6>utk menambahkan mata pelajaran lainnya, klik +</h6>
+               
+                <button type="submit">Prediksi</button>
             </div>
         </form>
 
         <?php if (!empty($predictedScores)): ?>
             <div class="results">
-                <h2>Hasil Prediksi:</h2>
+                <h4>Selamat yah..🥳<br>Ini adalah hasil dari kerja keras kamu selama masa menjalani ujian.</h4>
                 <ul>
                     <?php foreach ($predictedScores as $subject => $score): ?>
                         <li><strong><?= htmlspecialchars($subject) ?>:</strong> <?= $score ?></li>
@@ -209,8 +222,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <footer>
-        <p>Hubungi Pembuat: <a href="mailto:naufalshdq@gmail.com">naufalshdq@gmail.com</a></p>
-        <p class="watermark">&copy; 2024 Naufalshdq</p>
+        <p>Dukung Kami: <a href="https://saweria.co/mhammadnaufal">saweria mhammadnaufal</a></p>
+        <p class="watermark">&copy; 2024 unfnitystudiosimagines team</p>
     </footer>
 
     <script>
