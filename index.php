@@ -42,17 +42,7 @@ $successMessages = [
     "Kerja keras Anda terbayar! Rata-rata nilai Anda sangat baik.",
     "Hebat! Anda menunjukkan hasil yang mengagumkan.",
     "Luar biasa! Pertahankan kinerja Anda.",
-    "Anda telah mencapai hasil yang sangat baik, teruskan!",
-    "Wow, genius banget! Nilai rata-rata kamu bikin iri semut di buku pelajaran.",
-    "Keren banget! Kamu berhasil bikin guru-guru bangga, dan teman-teman iri.",
-    "Mantap! Nilai kamu kayak promo diskon besar-besaran, tinggi banget!",
-    "Hebat! Nggak nyangka kamu bisa secerdas ini, serius loh!",
-    "Top banget! Kamu udah resmi jadi kebanggaan keluarga dan tetangga.",
-    "Nggak nyangka, kamu ternyata pinter juga! Nilainya nggak malu-maluin.",
-    "Wow, nilai kamu kayak mimpi indah, bikin bahagia siapa pun yang lihat!",
-    "Luar biasa! Kalau begini, Einstein aja bakal merasa terancam.",
-    "Selamat! Kayaknya kamu rajin belajar, atau cuma hoki sih?",
-    "Keren! Nilai kamu bikin tetangga jadi bahan gosip, ‘Anaknya pintar banget!"
+    "Anda telah mencapai hasil yang sangat baik, teruskan!"
 ];
 
 $errorMessages = [
@@ -60,18 +50,7 @@ $errorMessages = [
     "Masih banyak ruang untuk meningkatkan usaha Anda.",
     "Jangan berkecil hati, tetap semangat belajar!",
     "Hasil ini adalah peluang untuk belajar lebih giat lagi.",
-    "Tingkatkan usaha Anda untuk hasil yang lebih baik di masa depan.",
-    "Wow, genius banget! Nilai rata-rata kamu bikin iri semut di buku pelajaran.",
-    "Nilai segini? Ini rapor atau bukti perjuangan gagal?",
-    "Aduh, nilainya rendah banget, sampai gravitasi pun nggak bisa narik lebih bawah lagi.",
-    "Hmm... kayaknya kalkulator aja malas ngitung nilai kamu, deh.",
-    "Nilainya kayak film horor: bikin takut siapa pun yang lihat.",
-    "Serius, ini nilai atau sinyal HP di hutan? Sama-sama nggak ada harapan!",
-    "Yah... nilai kamu kayak sinyal WiFi, lemah banget!",
-    "Hmm, sepertinya kamu lebih cocok jadi pelawak daripada pelajar.",
-    "Waduh, nilainya bikin hati ini pengen uninstall kamu dari daftar siswa.",
-    "Serius? Kamu belajar nggak sih? Nilainya kayak cendol di dasar gelas.",
-    "Nilai kamu cocok buat jadi motivasi orang lain: 'Jangan kayak dia!"
+    "Tingkatkan usaha Anda untuk hasil yang lebih baik di masa depan."
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -94,41 +73,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-family: 'Arial', sans-serif;
             background-color: #F5F2FC;
             margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: rgba(255, 255, 255, .1,);
-            backdrop-filter: blur(10px);
             padding: 20px;
-            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
-           color: #212240;
+            color: #212240;
+            text-align: center;
         }
-        h4 {
+
+        h5 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
         }
+
         h6 {
             font-size: 12px;
             color: #555;
+            text-align: center;
         }
+
         form {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         input[type="text"] {
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-bottom: 4px;
         }
+
         button {
             padding: 10px;
             font-size: 16px;
@@ -139,16 +125,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             cursor: pointer;
             transition: 0.3s;
         }
+
         button:hover {
-            background-color: #F5F2FC;
+            background-color: #333;
         }
+
         .results {
             margin-top: 20px;
         }
+
         .results ul {
             list-style: none;
             padding: 0;
         }
+
         .results li {
             background: #f9f9f9;
             margin: 5px 0;
@@ -156,22 +146,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border: 1px solid #ddd;
             border-radius: 5px;
         }
+
         .message {
             margin-top: 20px;
             padding: 10px;
             border-radius: 5px;
             text-align: center;
         }
+
         .message.success {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
+
         .message.error {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
         footer {
             text-align: center;
             margin-top: 20px;
@@ -179,27 +173,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 12px;
             color: #555;
         }
+
         footer .watermark {
             font-style: italic;
         }
 
         @media (max-width: 768px) {
             .container {
-                margin: 10px;
                 padding: 15px;
             }
+
+            h2 {
+                font-size: 18px;
+            }
+
             input[type="text"] {
-                width: 100%;
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 6px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Prediksi Nilai Ujian Akhir</2>
+        <h2>Prediksi Nilai Ujian Akhir</h2>
         <form method="POST">
             <div id="subjects-container">
-                <h6>Hasil prediksi adalah nilai asli dari soal yang kamu jawab saat ujian, tidak ada penambahan nilai dari tugas harian ataupun PR(tugas rumah)</h6>
+                <h6>Hasil prediksi adalah nilai asli dari soal yang kamu jawab saat ujian, tidak ada penambahan nilai dari tugas harian ataupun PR (tugas rumah).</h6>
                 <input type="text" name="subjects[]" placeholder="Masukkan mata pelajaran" required>
             </div>
             <div class="buttons">
@@ -210,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php if (!empty($predictedScores)): ?>
             <div class="results">
-                <h4>Selamat yah..🥳<br>Ini adalah hasil dari kerja keras kamu selama masa menjalani ujian.</h4>
+                <h5>Selamat yah.. 🥳<br>Ini adalah hasil dari kerja keras kamu selama masa menjalani ujian.</h5>
                 <ul>
                     <?php foreach ($predictedScores as $subject => $score): ?>
                         <li><strong><?= htmlspecialchars($subject) ?>:</strong> <?= $score ?></li>
