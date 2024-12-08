@@ -42,7 +42,17 @@ $successMessages = [
     "Kerja keras Anda terbayar! Rata-rata nilai Anda sangat baik.",
     "Hebat! Anda menunjukkan hasil yang mengagumkan.",
     "Luar biasa! Pertahankan kinerja Anda.",
-    "Anda telah mencapai hasil yang sangat baik, teruskan!"
+    "Anda telah mencapai hasil yang sangat baik, teruskan!",
+    "Wow, genius banget! Nilai rata-rata kamu bikin iri semut di buku pelajaran.",
+    "Keren banget! Kamu berhasil bikin guru-guru bangga, dan teman-teman iri.",
+    "Mantap! Nilai kamu kayak promo diskon besar-besaran, tinggi banget!",
+    "Hebat! Nggak nyangka kamu bisa secerdas ini, serius loh!",
+    "Top banget! Kamu udah resmi jadi kebanggaan keluarga dan tetangga.",
+    "Nggak nyangka, kamu ternyata pinter juga! Nilainya nggak malu-maluin.",
+    "Wow, nilai kamu kayak mimpi indah, bikin bahagia siapa pun yang lihat!",
+    "Luar biasa! Kalau begini, Einstein aja bakal merasa terancam.",
+    "Selamat! Kayaknya kamu rajin belajar, atau cuma hoki sih?",
+    "Keren! Nilai kamu bikin tetangga jadi bahan gosip, ‘Anaknya pintar banget!"
 ];
 
 $errorMessages = [
@@ -50,7 +60,18 @@ $errorMessages = [
     "Masih banyak ruang untuk meningkatkan usaha Anda.",
     "Jangan berkecil hati, tetap semangat belajar!",
     "Hasil ini adalah peluang untuk belajar lebih giat lagi.",
-    "Tingkatkan usaha Anda untuk hasil yang lebih baik di masa depan."
+    "Tingkatkan usaha Anda untuk hasil yang lebih baik di masa depan.",
+    "Wow, genius banget! Nilai rata-rata kamu bikin iri semut di buku pelajaran.",
+    "Nilai segini? Ini rapor atau bukti perjuangan gagal?",
+    "Aduh, nilainya rendah banget, sampai gravitasi pun nggak bisa narik lebih bawah lagi.",
+    "Hmm... kayaknya kalkulator aja malas ngitung nilai kamu, deh.",
+    "Nilainya kayak film horor: bikin takut siapa pun yang lihat.",
+    "Serius, ini nilai atau sinyal HP di hutan? Sama-sama nggak ada harapan!",
+    "Yah... nilai kamu kayak sinyal WiFi, lemah banget!",
+    "Hmm, sepertinya kamu lebih cocok jadi pelawak daripada pelajar.",
+    "Waduh, nilainya bikin hati ini pengen uninstall kamu dari daftar siswa.",
+    "Serius? Kamu belajar nggak sih? Nilainya kayak cendol di dasar gelas.",
+    "Nilai kamu cocok buat jadi motivasi orang lain: 'Jangan kayak dia!"
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -93,38 +114,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-bottom: 20px;
         }
         h6 {
-            font-size: 10px;
+            font-size: 12px;
             color: #555;
-            text-align: ;
-            
         }
         form {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        #subjects-container {
-            flex: 1 1 100%
-        }
         input[type="text"] {
-            
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
             margin-bottom: 4px;
         }
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
         button {
-            padding: 5px 10px;
-            font-size: 14px;
+            padding: 10px;
+            font-size: 16px;
             color: white;
             background-color: #212240;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -192,10 +203,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="subjects[]" placeholder="Masukkan mata pelajaran" required>
             </div>
             <div class="buttons">
-                <button type="button" onclick="addSubjectField()">+</button>
-             <h6>utk menambahkan mata pelajaran lainnya, klik +</h6>
-               
-                <button type="submit">Prediksi</button>
+                <button type="button" onclick="addSubjectField()">Tambahkan Mapel Lainnya</button>
+                <button type="submit">Prediksi Hasil</button>
             </div>
         </form>
 
