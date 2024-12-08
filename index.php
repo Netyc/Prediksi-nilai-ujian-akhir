@@ -1,7 +1,4 @@
 <?php
-require_once 'vendor/autoload.php'; // Pastikan Anda sudah menginstal library dompdf
-use Dompdf\Dompdf;
-
 // Class SubjectPredictor
 class SubjectPredictor {
     private $predictedScores = [];
@@ -40,27 +37,28 @@ $predictor = $_SESSION['predictor'];
 $subjects = [];
 $predictedScores = [];
 $averageScore = 0;
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subjects'])) {
-    $subjects = $_POST['subjects'];
+$successMessages = [
+    "Selamat! Nilai rata-rata Anda luar biasa.",
+    "Kerja keras Anda terbayar! Rata-rata nilai Anda sangat baik.",
+    "Hebat! Anda menunjukkan hasil yang mengagumkan.",
+    "Luar biasa! Pertahankan kinerja Anda.",
+    "Anda telah mencapai hasil yang sangat baik, teruskan!"
+];
+
+$errorMessages = [
+    "Nilai rata-rata Anda kurang memuaskan. Jangan menyerah!",
+    "Masih banyak ruang untuk meningkatkan usaha Anda.",
+    "Jangan berkecil hati, tetap semangat belajar!",
+    "Hasil ini adalah peluang untuk belajar lebih giat lagi.",
+    "Tingkatkan usaha Anda untuk hasil yang lebih baik di masa depan."
+];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $subjects = $_POST['subjects'] ?? [];
     foreach ($subjects as $subject) {
         $predictedScores[$subject] = $predictor->predictScore($subject);
     }
     $averageScore = $predictor->calculateAverageScore();
-
-    if (isset($_POST['download'])) {
-        $html = "<h1>Laporan Prediksi Nilai</h1><table border='1' style='width:100%; border-collapse:collapse; text-align:left;'><tr><th>Mata Pelajaran</th><th>Nilai Prediksi</th></tr>";
-        foreach ($predictedScores as $subject => $score) {
-            $html .= "<tr><td>" . htmlspecialchars($subject) . "</td><td>" . $score . "</td></tr>";
-        }
-        $html .= "</table><p><strong>Rata-rata Nilai:</strong> " . $averageScore . "</p>";
-
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        $dompdf->stream("Laporan_Nilai.pdf");
-        exit;
-    }
 }
 ?>
 
@@ -72,19 +70,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subjects'])) {
     <title>Laporan Prediksi Nilai</title>
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #f9f9f9;
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f7;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
         .container {
             max-width: 800px;
-            margin: auto;
-            background: #fff;
+            margin: 20px auto;
+            background: white;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
@@ -93,23 +90,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subjects'])) {
         }
         form {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 10px;
         }
+        #subjects-container {
+            flex: 1 1 100%;
+        }
         input[type="text"] {
+            width: calc(100% - 20px);
             padding: 10px;
-            font-size: 16px;
+            font-size: 14px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
         }
         button {
-            padding: 10px;
-            background-color: #007BFF;
+            padding: 10px 15px;
+            font-size: 14px;
             color: white;
+            background-color: #007BFF;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
+            transition: 0.3s;
         }
         button:hover {
             background-color: #0056b3;
@@ -117,17 +124,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subjects'])) {
         .results {
             margin-top: 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .results ul {
+            list-style: none;
+            padding: 0;
         }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
+        .results li {
+            background: #f9f9f9;
+            margin: 5px 0;
             padding: 10px;
-            text-align: left;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 12px;
+            color: #555;
+        }
+        footer .watermark {
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            input[type="text"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -138,34 +180,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['subjects'])) {
             <div id="subjects-container">
                 <input type="text" name="subjects[]" placeholder="Masukkan mata pelajaran" required>
             </div>
-            <button type="button" onclick="addSubjectField()">Tambah Mata Pelajaran</button>
-            <button type="submit">Prediksi Nilai</button>
-            <button type="submit" name="download">Download PDF</button>
+            <div class="buttons">
+                <button type="button" onclick="addSubjectField()">Tambah Mata Pelajaran</button>
+                <button type="submit">Prediksi Nilai</button>
+            </div>
         </form>
 
-<?php if (!empty($predictedScores)): ?>
-        <div class="results">
-            <h2>Hasil Prediksi:</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mata Pelajaran</th>
-                        <th>Nilai Prediksi</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <?php if (!empty($predictedScores)): ?>
+            <div class="results">
+                <h2>Hasil Prediksi:</h2>
+                <ul>
                     <?php foreach ($predictedScores as $subject => $score): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($subject) ?></td>
-                            <td><?= $score ?></td>
-                        </tr>
+                        <li><strong><?= htmlspecialchars($subject) ?>:</strong> <?= $score ?></li>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
-            <p><strong>Rata-rata Nilai:</strong> <?= $averageScore ?></p>
-        </div>
-<?php endif; ?>
+                </ul>
+                <p><strong>Rata-rata Nilai:</strong> <?= $averageScore ?></p>
+                <?php if ($averageScore >= 75): ?>
+                    <div class="message success">
+                        <?= $successMessages[array_rand($successMessages)] ?>
+                    </div>
+                <?php else: ?>
+                    <div class="message error">
+                        <?= $errorMessages[array_rand($errorMessages)] ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </div>
+
+    <footer>
+        <p>Hubungi Pembuat: <a href="mailto:naufalshdq@gmail.com">naufalshdq@gmail.com</a></p>
+        <p class="watermark">&copy; 2024 Naufalshdq</p>
+    </footer>
 
     <script>
         function addSubjectField() {
