@@ -76,17 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 20px;
         }
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: rgba(255, 255, 255, .1,);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
+        h1 {
             color: #212240;
             text-align: center;
         }
@@ -98,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         h6 {
-            font-size: 12px;
+            font-size: 16px;
             color: #555;
             text-align: left;
         }
@@ -178,7 +168,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         footer .watermark {
             font-style: italic;
         }
-
+    
+      @media (min-width: 1024px) {
+            body {
+                padding: 40px;
+            }
+            .container {
+                max-width: 800px;
+            }
+            h2 {
+                font-size: 28px;
+            }
+            input[type="text"] {
+                font-size: 18px;
+            }
+            button {
+                font-size: 18px;
+                padding: 15px;
+            }
+            .results ul {
+                margin: 0 20px;
+            }
+        }
+    
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -213,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <h2>Prediksi Nilai Ujian Akhir</h2>
+        <h1>Prediksi Nilai Ujian Akhir</h1>
         <form method="POST">
             <div id="subjects-container">
                 <h6>Hasil prediksi adalah nilai asli dari soal yang kamu jawab saat ujian, tidak ada penambahan nilai dari tugas harian ataupun PR (tugas rumah).</h6>
