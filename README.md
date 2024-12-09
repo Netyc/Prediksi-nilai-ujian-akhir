@@ -1,121 +1,123 @@
-# Subject Predictor Web Application
+# Web Prediksi Mata pelajaran 
 
-## Description
-The Subject Predictor is a web application designed to predict exam scores for various subjects. Users can input subjects, and the app generates random predicted scores. It also calculates the average score and displays a motivational message based on the results. This project is built with PHP for backend logic and HTML, CSS, and JavaScript for the frontend.
-
----
-
-## Features
-- Predicts scores for input subjects with random values between 0 and 100.
-- Calculates the average score of all predicted subjects.
-- Displays motivational or constructive feedback messages based on the average score.
-- Allows users to dynamically add multiple subjects to predict scores for.
-- Fully responsive design for mobile and desktop devices.
+## Deskripsi
+Prediksi Mata Pelajaran adalah aplikasi web yang dirancang untuk memprediksi nilai ujian untuk berbagai mata pelajaran. Pengguna dapat memasukkan mata pelajaran, dan aplikasi tersebut menghasilkan nilai prediksi acak. Aplikasi ini juga menghitung nilai rata-rata dan menampilkan pesan motivasi berdasarkan hasil. Proyek ini dibangun dengan PHP untuk logika backend dan HTML, CSS, dan JavaScript untuk frontend.
 
 ---
 
-## Requirements
-- PHP 7.4 or higher
-- Web server (e.g., Apache, Nginx, or PHP built-in server)
-- Browser with JavaScript enabled
+## Fitur
+- Memprediksi nilai untuk mata pelajaran input dengan nilai acak antara 0 dan 100.
+- Menghitung nilai rata-rata semua mata pelajaran yang diprediksi.
+- Menampilkan pesan umpan balik motivasi atau konstruktif berdasarkan nilai rata-rata.
+- Memungkinkan pengguna untuk menambahkan beberapa mata pelajaran secara dinamis untuk memprediksi nilai.
+- Desain yang sepenuhnya responsif untuk perangkat seluler dan desktop.
 
 ---
 
-## Installation
-1. Clone the repository or download the source code:
-    ```bash
-    git clone https://github.com/yourusername/subject-predictor.git
-    ```
-
-2. Place the files in your web server's root directory.
-
-3. Start your PHP server:
-    ```bash
-    php -S localhost:8000
-    ```
-
-4. Open your browser and navigate to:
-    ```
-    http://localhost:8000
-    ```
+## Persyaratan
+- PHP 7.4 atau lebih tinggi
+- Server web (misalnya, Apache, Nginx, atau server bawaan PHP)
+- Peramban dengan JavaScript yang diaktifkan
 
 ---
 
-## Usage
-1. Enter a subject name in the input field.
-2. Click **Tambahkan Mapel Lainnya** to add more subjects if needed.
-3. Click **Prediksi Hasil** to generate scores.
-4. View the predicted scores and average score in the results section.
-5. Read the motivational message based on the average score.
+## Instalasi
+1. Klon repositori atau unduh kode sumber:
+```bash
+git clone https://github.com/Netyc/prediksi-nilai-ujian-akhir.git
+```
+
+2. Letakkan file di direktori root server web Anda.
+
+3. Jalankan server PHP Anda:
+```bash
+php -S localhost:8000
+```
+
+4. Buka peramban Anda dan navigasikan ke:
+```
+http://localhost:8000
+```
 
 ---
 
-## File Structure
-- `index.php`: Main PHP script containing backend logic and frontend rendering.
-- `styles`: Embedded CSS within the HTML for styling the web application.
-- `scripts`: JavaScript for dynamic addition of subject input fields.
+## Penggunaan
+1. Masukkan nama subjek di kolom input.
+2. Klik **Tambahkan Mapel Lainnya** untuk menambahkan lebih banyak subjek jika diperlukan.
+3. Klik **Prediksi Hasil** untuk menghasilkan skor.
+4. Lihat skor yang diprediksi dan skor rata-rata di bagian hasil.
+5. Baca pesan motivasi berdasarkan skor rata-rata.
 
 ---
 
-## Key Code Highlights
-- **Random Score Prediction:**
-    ```php
-    $score = rand(0, 100);
-    ```
-    Generates a random score for each subject input.
-
-- **Average Score Calculation:**
-    ```php
-    return array_sum($this->predictedScores) / count($this->predictedScores);
-    ```
-    Computes the average of all predicted scores.
-
-- **Responsive Design:**
-    CSS is styled with media queries to ensure responsiveness for desktop and mobile devices.
+## Struktur File
+- `index.php`: Skrip PHP utama yang berisi logika backend dan rendering frontend.
+- `styles`: CSS yang disematkan dalam HTML untuk menata aplikasi web.
+- `scripts`: JavaScript untuk penambahan bidang input subjek secara dinamis.
 
 ---
 
-## Customization
-- **Feedback Messages:**
-  You can edit the success and error messages in the `$successMessages` and `$errorMessages` arrays within the PHP code.
+## Sorotan Kode Kunci
+- **Prediksi Skor Acak:**
 
-- **Styling:**
-  Modify the embedded CSS in the `<style>` section to change the appearance of the application.
+```php
+$score = rand(0, 100);
 
----
+```
+Menghasilkan skor acak untuk setiap input subjek.
 
-## Contributing
-1. Fork the repository.
-2. Create a new branch:
-    ```bash
-    git checkout -b feature-branch
-    ```
-3. Commit your changes:
-    ```bash
-    git commit -m "Add new feature"
-    ```
-4. Push to the branch:
-    ```bash
-    git push origin feature-branch
-    ```
-5. Open a pull request.
+- **Perhitungan Skor Rata-rata:**
+
+```php
+return array_sum($this->predictedScores) / count($this->predictedScores);
+
+```
+Menghitung rata-rata semua skor yang diprediksi.
+
+- **Desain Responsif:**
+CSS ditata dengan kueri media untuk memastikan responsivitas untuk perangkat desktop dan seluler.
 
 ---
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## Kustomisasi
+- **Pesan Umpan Balik:**
+Anda dapat mengedit pesan sukses dan pesan kesalahan dalam array `$successMessages` dan `$errorMessages` dalam kode PHP.
+
+- **Penataan Gaya:**
+Ubah CSS yang disematkan di bagian `<style>` untuk mengubah tampilan aplikasi.
 
 ---
 
-## Acknowledgments
-- Built by unfnitystudiosimagines team
-- Special thanks to contributors and testers
-- Support us at: [Saweria](https://saweria.co/mhammadnaufal)
+## Kontribusi
+1. Fork repositori.
+2. Buat cabang baru:
+```bash
+git checkout -b feature-branch
+```
+3. Komit perubahan Anda:
+```bash
+git commit -m "Add new feature"
+```
+4. Push ke cabang:
+```bash
+git push origin feature-branch
+```
+5. Buka permintaan tarik.
 
 ---
 
-## Contact
-For questions, suggestions, or contributions, please reach out to:
+## Lisensi
+Proyek ini dilisensikan di bawah GNU GENERAL PUBLIC LICENSE. Lihat berkas LICENSE untuk detailnya.
+
+---
+
+## Ucapan Terima Kasih
+- Dibuat oleh ig:@naufalshdq
+- Ucapan terima kasih khusus kepada kontributor dan penguji
+- Dukung kami di: [Saweria](https://saweria.co/mhammadnaufal)
+
+---
+
+## Kontak
+Untuk pertanyaan, saran, atau kontribusi, silakan hubungi:
 - Email: naufalmushaddiq@gmail.com
-- Website: [unfnitystudiosimagines.com](https://unfnitystudiosimagines.com)
-
