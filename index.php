@@ -206,6 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             button {
+                display: inline-block;
+                margin: auto;
                 font-size: 14px;
                 padding: 8px;
             }
@@ -260,8 +262,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <footer>
-        <p>Dukung Kami: <a href="https://saweria.co/mhammadnaufal">saweria mhammadnaufal</a></p>
-        <p class="watermark">&copy; 2024 unfnitystudiosimagines team</p>
+        <p>Dukung Kami: <a href="https://saweria.co/mhammadnaufal">Belikan kopi dong hehe ☕</a></p>
+        <p class="watermark">&copy; 2024 kode by @naufalshdq</p>
     </footer>
 
     <script>
