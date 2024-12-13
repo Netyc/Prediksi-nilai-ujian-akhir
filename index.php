@@ -3,16 +3,12 @@
 class SubjectPredictor {
     private $predictedScores = [];
 
-    public function predictScore($subject, $username) {
+    public function predictScore($subject, $averageReportScore) {
         $normalizedSubject = strtolower(trim($subject));
-        $normalizedUsername = strtolower(trim($username));
 
-        // Hash username untuk menghasilkan pola prediksi
-        $userHash = crc32($normalizedUsername);
-
-        // Tentukan range nilai berdasarkan hash
-        $minScore = ($userHash % 2 === 0) ? 75 : 25;
-        $maxScore = ($userHash % 2 === 0) ? 100 : 74;
+        // Tentukan range nilai berdasarkan rata-rata nilai lapor
+        $minScore = $averageReportScore >= 75 ? 75 : 25;
+        $maxScore = $averageReportScore >= 75 ? 100 : 74;
 
         if (isset($this->predictedScores[$normalizedSubject])) {
             return $this->predictedScores[$normalizedSubject];
@@ -46,12 +42,12 @@ $predictor = $_SESSION['predictor'];
 $subjects = [];
 $predictedScores = [];
 $averageScore = 0;
-$username = '';
+$averageReportScore = 0;
 $message = '';
+$username = '';
 
 $successMessages = [
     "Wow.. si karbit sa ae diatas rata rata ga tuh🫵😂🫵",
-    "Waduh bang, hebat banget luh cik, untuk dapat warna hijau ni sulit loh bang, probalitas 0,001%💀",
     "Hei sepuh, anda ini jawir yah, hebat hebat orang jawir yah, selamatt❤️‍🔥",
     "Lumayan juga lu, beruntung amat hidup lu. selamat ya sayang, muchh🥰",
     "Selamat anda telah selamat dari yang namanya kehidupan ujian, silahkan coba lagi ujian tahun depan yah..",
@@ -178,8 +174,9 @@ $errorMessages = [
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subjects = $_POST['subjects'] ?? [];
     $username = htmlspecialchars($_POST['username'] ?? 'Pengguna');
-    foreach ($subjects as $subject) {
-        $predictedScores[$subject] = $predictor->predictScore($subject, $username);
+         $averageReportScore = (float) $_POST['average_report_score'];
+         foreach ($subjects as $subject) {
+        $predictedScores[$subject] = $predictor->predictScore($subject, $averageReportScore);
     }
 
     // Jika jumlah pelajaran kurang dari 5
@@ -256,6 +253,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         input[type="text"] {
+            margin: 2px;
+            width: 100%;
+            padding: 20px 20px;
+            font-size: 25px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="number"] {
             margin: 2px;
             width: 100%;
             padding: 20px 20px;
@@ -347,6 +353,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         input[type="text"] {
             font-size: 25px;
         }
+        input[type="number"] {
+            font-size: 25px;
+        }
  
         button {
              font-size: 25px;
@@ -371,6 +380,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             input[type="text"] {
+                font-size: 14px;
+                padding: 8px 4px;
+            }
+            input[type="number"] {
                 font-size: 14px;
                 padding: 8px 4px;
             }
@@ -401,6 +414,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div id="subjects-container">
             <label for="username">Nama kamu</label>
             <input type="text" name="username" placeholder="Masukkan nama kamu" required value="<?= htmlspecialchars($username) ?>">
+            
+            
+            <label for="average_report_score">Rata-rata Nilai Lapor</label>
+            <input type="number" name="average_report_score" step="0.01" placeholder="Masukkan rata-rata nilai lapor" required>
             
             <label for="subjects[]">Mata pelajaran</label>
             <input type="text" name="subjects[]" placeholder="Masukkan mata pelajaran" required>
